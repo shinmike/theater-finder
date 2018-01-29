@@ -5,8 +5,8 @@ import './assets/css/style.min.css';
 
 // Components
   // Header
-import Nav from './components/header/nav';
-import Search from './components/header/search';
+import Nav from './components/nav';
+import Search from './components/search';
 
 class App extends Component {
   render() {

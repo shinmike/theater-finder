@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 
 // Includes
-import './assets/css/style.min.css';
+import './assets/css/styles.min.css';
 
 // Components
-  // Header
 import Nav from './components/nav';
-import Search from './components/search';
+import SearchBar from './components/search_bar';
 
 class App extends Component {
   render() {
     return (
       <div>
         <Nav />
-        <Search />
+        <SearchBar />
       </div>
     );
   }

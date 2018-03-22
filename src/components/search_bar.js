@@ -11,7 +11,7 @@ class SearchBar extends Component {
     }
     this.onChange = (address) => this.setState({ address })
   }
-
+  //i don't know what it is
   // constructor(){
   //   super()
   //   this.state = {

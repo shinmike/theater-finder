@@ -5,8 +5,28 @@ import PlacesAutocomplete from 'react-places-autocomplete';
 class SearchBar extends Component {
   constructor(props) {
     super(props)
-    this.state = { address: 'Vancouver, BC'}
-    this.onChange = (address) => this.setState({address})
+    this.state = {
+      address: 'Vancouver, BC',
+      placeId: '',
+    }
+    this.onChange = (address) => this.setState({ address })
+  }
+
+  // constructor(){
+  //   super()
+  //   this.state = {
+  //     searchLocation: ''
+  //   }
+  // }
+
+  updateLocation(e) {
+    this.setState({
+      searchLocation: e.target.value
+    })
+  }
+
+  searchLocation() {
+    console.log(`searchLocation: ${this.state.searchLocation}`)
   }
 
   render() {
@@ -43,16 +63,18 @@ class SearchBar extends Component {
       },
     }
     const handleSelect = (address, placeId) => {
-      this.setState({ address, placeId})
+      this.setState({ address, placeId })
     }
     return (
       <div className="search-bar">
         <form onSubmit={this.handleFormSubmit}>
-          <PlacesAutocomplete inputProps={inputProps} 
-                              classNames={cssClasses}
-                              onSelect={this.handleSelect}/>
+          <PlacesAutocomplete inputProps={inputProps}
+            classNames={cssClasses}
+            onSelect={this.handleSelect} />
           <button type="submit">Submit</button>
         </form>
+        <input onChange={this.updateLocation.bind(this)} type="text" placeholder="" />
+        <button onClick={this.searchLocation.bind(this)}>Search</button>
       </div>
     );
   }

@@ -52,8 +52,6 @@ class SearchBar extends Component {
       },
     }
 
-
-
     return (
       <div className="search-bar">
         <form onSubmit={this.handleFormSubmit.bind(this)}>

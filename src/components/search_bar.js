@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PlacesAutocomplete from 'react-places-autocomplete';
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 
 class SearchBar extends Component {
@@ -27,6 +27,15 @@ class SearchBar extends Component {
 
   searchLocation() {
     console.log(`searchLocation: ${this.state.searchLocation}`)
+  }
+
+  handleFormSubmit(event) {
+    event.preventDefault()
+    console.log("this.state.address", this.state.address)
+    geocodeByAddress(this.state.address)
+      .then(results => getLatLng(results[0]))
+      .then(latLng => console.log('Success', latLng))
+      .catch(error => console.error('Error', error))
   }
 
   render() {
@@ -62,15 +71,13 @@ class SearchBar extends Component {
         backgroundColor: 'red',
       },
     }
-    const handleSelect = (address, placeId) => {
-      this.setState({ address, placeId })
-    }
     return (
       <div className="search-bar">
-        <form onSubmit={this.handleFormSubmit}>
-          <PlacesAutocomplete inputProps={inputProps}
-            classNames={cssClasses}
-            onSelect={this.handleSelect} />
+        <form onSubmit={this.handleFormSubmit.bind(this)}>
+          <PlacesAutocomplete inputProps={inputProps} 
+                              classNames={cssClasses}
+                              // onEnterKeyDown={this.handleEnter}
+                              />
           <button type="submit">Submit</button>
         </form>
         <input onChange={this.updateLocation.bind(this)} type="text" placeholder="" />

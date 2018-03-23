@@ -18,7 +18,7 @@ class App extends Component {
         {/* <SearchBar /> */}
         {/* <div style={{width: '100%', height: '100vh'}}>
           <Map 
-            center={{lat:40.728199, lng:-73.9894738}}
+            center={{lat:20.728199, lng:-73.9894738}}
             zoom={8}
             containerElement={<div style={{ height: `100%` }} />}
             mapElement={<div style={{ height: `100%` }} />}

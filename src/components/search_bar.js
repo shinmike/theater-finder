@@ -5,8 +5,28 @@ import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-au
 class SearchBar extends Component {
   constructor(props) {
     super(props)
-    this.state = { address: 'Vancouver, BC'}
-    this.onChange = (address) => this.setState({address})
+    this.state = {
+      address: 'Vancouver, BC',
+      placeId: '',
+    }
+    this.onChange = (address) => this.setState({ address })
+  }
+  //i don't know what it is
+  // constructor(){
+  //   super()
+  //   this.state = {
+  //     searchLocation: ''
+  //   }
+  // }
+
+  updateLocation(e) {
+    this.setState({
+      searchLocation: e.target.value
+    })
+  }
+
+  searchLocation() {
+    console.log(`searchLocation: ${this.state.searchLocation}`)
   }
 
   handleFormSubmit(event) {
@@ -51,7 +71,6 @@ class SearchBar extends Component {
         backgroundColor: 'red',
       },
     }
-
     return (
       <div className="search-bar">
         <form onSubmit={this.handleFormSubmit.bind(this)}>
@@ -61,6 +80,8 @@ class SearchBar extends Component {
                               />
           <button type="submit">Submit</button>
         </form>
+        <input onChange={this.updateLocation.bind(this)} type="text" placeholder="" />
+        <button onClick={this.searchLocation.bind(this)}>Search</button>
       </div>
     );
   }
